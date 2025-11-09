@@ -1,4 +1,5 @@
 #include "Contact.hpp"
+#include "Colors.hpp"
 
 Contact::Contact()
 {
@@ -34,11 +35,13 @@ void	Contact::displayShort()
 
 void	Contact::displayFull()
 {
-	std::cout << "First Name: " << this->firstName << std::endl;
-	std::cout << "Last Name: " << this->lastName << std::endl;
-	std::cout << "Nickname: " << this->nickname << std::endl;
-	std::cout << "Phone Number: " << this->phoneNumber << std::endl;
-	std::cout << "Darkest Secret: " << this->darkestSecret << std::endl;
+	std::cout << BOLD_CYAN << "\n╔═══════════════ CONTACT INFO ═══════════════╗" << RESET << std::endl;
+	std::cout << BOLD_GREEN << "👤 First Name:     " << RESET << this->firstName << std::endl;
+	std::cout << BOLD_YELLOW << "👥 Last Name:      " << RESET << this->lastName << std::endl;
+	std::cout << BOLD_BLUE << "🎭 Nickname:       " << RESET << this->nickname << std::endl;
+	std::cout << BOLD_MAGENTA << "📞 Phone Number:   " << RESET << this->phoneNumber << std::endl;
+	std::cout << BOLD_RED << "🤫 Darkest Secret: " << RESET << this->darkestSecret << std::endl;
+	std::cout << BOLD_CYAN << "╚════════════════════════════════════════════╝" << RESET << std::endl;
 }
 
 std::string	Contact::getFirstName() const
