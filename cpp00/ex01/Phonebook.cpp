@@ -27,7 +27,7 @@ void	PhoneBook::addContact()
 		fields[i] = getInput(prompts[i]);
 		if (fields[i].empty())
 		{
-			std::cout << BOLD_RED << "🤨 Empty field? Really? That's a no from me, dawg! " << RESET << std::endl;
+			std::cout << BOLD_RED << "🤨 Empty field? Really? " << RESET << std::endl;
 			return ;
 		}
 		i++;
@@ -53,7 +53,7 @@ void	PhoneBook::searchContact()
 	input = getInput(BOLD_CYAN "\n🔍 Enter index: " RESET);
 	
 	if (input.length() != 1 || !isdigit(input[0]))
-		return ((void)(std::cout << BOLD_RED << "😂 That's not even a number! Did you skip math class? 🤪" << RESET << std::endl));
+		return ((void)(std::cout << BOLD_RED << "😂 Wrong u need enter 0-8 index, if u need calculator tell me 🤪" << RESET << std::endl));
 	
 	index = input[0] - '0';
 	if (index < 0 || index >= this->contactCount)
