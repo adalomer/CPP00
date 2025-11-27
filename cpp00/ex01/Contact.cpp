@@ -1,4 +1,4 @@
-#include "contact.hpp"
+#include "Contact.hpp"
 
 void Contact::setInfo(std::string fn, std::string ln, std::string nn, std::string ph, std::string sc)
 {
