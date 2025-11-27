@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include "PhoneBook.hpp"
-
+#include <cctype>
+#include <cstring>
 // Constructor
 PhoneBook::PhoneBook() : _count(0), _oldest(0) {}
 
@@ -11,8 +12,15 @@ static std::string getInput(std::string prompt)
 	while (s.empty())
 	{
 		std::cout << prompt;
-		if (!std::getline(std::cin, s))
-			return "";
+		std::getline(std::cin, s);
+		for(int i = 0;i < (int)s.length();i++)
+		{
+			if(!(std::isprint(s[i])))
+			{
+				std::cout << "NON printable" <<std::endl;
+				return "";
+			}
+		}
 	}
 	return s;
 }
