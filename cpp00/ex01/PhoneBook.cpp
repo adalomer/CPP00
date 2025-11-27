@@ -68,7 +68,7 @@ void PhoneBook::search()
 	}
 
 	int idx = std::atoi(in.c_str());
-	if (idx < 0 || idx >= _count) { std::cout << "Invalid index" << std::endl; return; }
+	if (idx < 0 || idx >= _count) { std::cout << "Invalid index, RTFM!" << std::endl; return; }
 
 	std::string labels[] = {"First Name", "Last Name", "Nickname", "Phone", "Secret"};
 	for (int i = 0; i < 5; i++)
