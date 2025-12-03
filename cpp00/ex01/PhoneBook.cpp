@@ -51,7 +51,8 @@ void PhoneBook::add()
 // Search contacts
 void PhoneBook::search()
 {
-	if (_count == 0) { std::cout << "Empty!, u need enter number" << std::endl; return; }
+	if (_count == 0)
+	std::cout << "Empty!, u need enter number" << std::endl; return;
 
 	std::cout << "|" << std::setw(10) << "Index" << "|" << std::setw(10) << "First"
 		<< "|" << std::setw(10) << "Last" << "|" << std::setw(10) << "Nick" << "|" << std::endl;
@@ -76,8 +77,9 @@ void PhoneBook::search()
 	}
 
 	int idx = std::atoi(in.c_str());
-	if (idx < 0 || idx >= _count) { std::cout << "Invalid index, RTFM!" << std::endl; return; }
-
+	if (idx < 0 || idx >= _count)  
+		std::cout << "Invalid index, RTFM!" << std::endl; return; 
+	
 	std::string labels[] = {"First Name", "Last Name", "Nickname", "Phone", "Secret"};
 	for (int i = 0; i < 5; i++)
 		std::cout << labels[i] << ": " << _contacts[idx].getField(i) << std::endl;
