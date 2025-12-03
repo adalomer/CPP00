@@ -17,7 +17,7 @@ static std::string getInput(std::string prompt)
 		{
 			if(!(std::isprint(s[i])))
 			{
-				std::cout << "NON printable" <<std::endl;
+				std::cout << "NON printable OR UTF-16 Character" <<std::endl;
 				return "";
 			}
 		}
@@ -28,7 +28,12 @@ static std::string getInput(std::string prompt)
 // Helper: Truncate string to 10 chars
 static std::string truncate(std::string s)
 {
-	return (s.length() > 10) ? s.substr(0, 9) + "." : s;
+	if(s.length() > 10) 
+	{
+		return (s.substr(0, 9)+ ".");
+	}
+	else
+		return(s);
 }
 
 // Add a new contact
@@ -40,7 +45,8 @@ void PhoneBook::add()
 	for (int i = 0; i < 5; i++)
 	{
 		f[i] = getInput(prompts[i]);
-		if (f[i].empty()) return;
+		if (f[i].empty())
+			return;
 	}
 	_contacts[_oldest].setInfo(f[0], f[1], f[2], f[3], f[4]);
 	_oldest = (_oldest + 1) % 8;
@@ -52,7 +58,10 @@ void PhoneBook::add()
 void PhoneBook::search()
 {
 	if (_count == 0)
-	std::cout << "Empty!, u need enter number" << std::endl; return;
+	{ 
+		std::cout << "Empty!, u need enter number" << std::endl;
+		return;
+	}
 
 	std::cout << "|" << std::setw(10) << "Index" << "|" << std::setw(10) << "First"
 		<< "|" << std::setw(10) << "Last" << "|" << std::setw(10) << "Nick" << "|" << std::endl;
@@ -64,8 +73,8 @@ void PhoneBook::search()
 
 	std::string in;
 	std::cout << "Index: ";
-	if (!std::getline(std::cin, in) || in.empty()) return;
-
+	if (!std::getline(std::cin, in) || in.empty()) 
+		return;
 	// Check if input is a valid number
 	for (size_t i = 0; i < in.length(); i++)
 	{
@@ -77,9 +86,12 @@ void PhoneBook::search()
 	}
 
 	int idx = std::atoi(in.c_str());
-	if (idx < 0 || idx >= _count)  
-		std::cout << "Invalid index, RTFM!" << std::endl; return; 
-	
+	if (idx < 0 || idx >= _count)
+	{
+		std::cout << "Invalid index, RTFM!" << std::endl;
+		return;
+	}
+
 	std::string labels[] = {"First Name", "Last Name", "Nickname", "Phone", "Secret"};
 	for (int i = 0; i < 5; i++)
 		std::cout << labels[i] << ": " << _contacts[idx].getField(i) << std::endl;
