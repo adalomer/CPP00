@@ -51,7 +51,7 @@ void PhoneBook::add()
 		{
 			if(i == 0 || i == 1)
 			{
-				if(!std::isalpha(f[i][b]))
+				if(!std::isalpha(f[i][b]) ||(int)f[i][b] == 32)
 				{
 					std::cout << "Name must contain only alphabetic character";
 					return;
