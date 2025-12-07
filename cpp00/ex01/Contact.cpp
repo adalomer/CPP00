@@ -11,10 +11,14 @@ void Contact::setInfo(std::string fn, std::string ln, std::string nn, std::strin
 
 std::string Contact::getField(int i) const
 {
-	if (i == 0) return _firstName;
-	if (i == 1) return _lastName;
-	if (i == 2) return _nickname;
-	if (i == 3) return _phone;
+	if (i == 0)
+		return _firstName;
+	if (i == 1)
+		return _lastName;
+	if (i == 2)
+		return _nickname;
+	if (i == 3)
+		return _phone;
 	return _secret;
 }
 

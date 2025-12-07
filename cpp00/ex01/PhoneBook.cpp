@@ -2,10 +2,9 @@
 #include "PhoneBook.hpp"
 #include <cctype>
 #include <cstring>
-// Constructor
+
 PhoneBook::PhoneBook() : _count(0), _oldest(0) {}
 
-// Helper: Get input from user (non-empty)
 static std::string getInput(std::string prompt)
 {
 	std::string s;
@@ -25,7 +24,6 @@ static std::string getInput(std::string prompt)
 	return s;
 }
 
-// Helper: Truncate string to 10 chars
 static std::string truncate(std::string s)
 {
 	if(s.length() > 10) 
@@ -36,7 +34,6 @@ static std::string truncate(std::string s)
 		return(s);
 }
 
-// Add a new contact
 void PhoneBook::add()
 {
 	std::string f[5];
@@ -46,15 +43,37 @@ void PhoneBook::add()
 	{
 		f[i] = getInput(prompts[i]);
 		if (f[i].empty())
+		{
+			std::cout << "Empty input or wrong input" << std::endl;
 			return;
+		}
+		for(int b = 0;b < (int)f[i].length() ;b++)
+		{
+			if(i == 0 || i == 1)
+			{
+				if(!std::isalpha(f[i][b]))
+				{
+					std::cout << "Name must contain only alphabetic character";
+					return;
+				}	
+			}
+			if(i == 3)
+			{
+				if(f[i][b] < 48 || f[i][b] > 57)
+				{
+					std::cout << "Phone number must numeric." << std::endl;
+						return;
+				}
+			}
+		}
 	}
 	_contacts[_oldest].setInfo(f[0], f[1], f[2], f[3], f[4]);
 	_oldest = (_oldest + 1) % 8;
-	if (_count < 8) _count++;
+	if (_count < 8)
+		_count++;
 	std::cout << "Contact added!" << std::endl;
 }
 
-// Search contacts
 void PhoneBook::search()
 {
 	if (_count == 0)
@@ -75,7 +94,7 @@ void PhoneBook::search()
 	std::cout << "Index: ";
 	if (!std::getline(std::cin, in) || in.empty()) 
 		return;
-	// Check if input is a valid number
+	
 	for (size_t i = 0; i < in.length(); i++)
 	{
 		if (in[i] < '0' || in[i] > '9')
@@ -105,9 +124,12 @@ int main()
 	std::cout << "Commands: ADD, SEARCH, EXIT" << std::endl;
 	while (std::cout << "> " && std::getline(std::cin, cmd))
 	{
-		if (cmd == "ADD") pb.add();
-		else if (cmd == "SEARCH") pb.search();
-		else if (cmd == "EXIT") break;
+		if (cmd == "ADD")
+			pb.add();
+		else if (cmd == "SEARCH")
+			pb.search();
+		else if (cmd == "EXIT")
+			break;
 		else
 			std::cout << "Commands: ADD, SEARCH, EXIT, do u blind?"<< std::endl;
 	}
